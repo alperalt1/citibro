@@ -1,14 +1,13 @@
 import { CheckOutlined, CloseOutlined, Edit, RemoveRedEye } from "@mui/icons-material";
 import { Avatar, Button, Dropdown, Input, Layout, MenuProps, message, Modal, Popconfirm, Space, Table, TableProps, Tooltip } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
-import { BlockOutlined, DownloadOutlined, ExclamationCircleOutlined, LogoutOutlined, PlusOutlined, SearchOutlined, SettingOutlined, UserOutlined } from "@ant-design/icons";
+import { BlockOutlined, DownloadOutlined, ExclamationCircleOutlined, LogoutOutlined, SearchOutlined, SettingOutlined, UserOutlined } from "@ant-design/icons";
 import { utils, writeFile } from 'xlsx';
-import { DataType } from "./Data";
 import { HeaderTable } from "../../Cotizacion/components/HeaderTable";
-import { FormModal } from "../../Cotizacion/components/FormModal";
 import { FormEditModal } from "../../Cotizacion/components/FormEditModal";
 import { FormSeeModal } from "../../Cotizacion/components/FormSeeModal";
 import { CotizacionHook } from "../../Cotizacion/hooks/CotizacionHook";
+import { DataType } from "../../Dashboard/Pages/Data";
 
 const handleMenuClick: MenuProps['onClick'] = (e) => {
   message.info('Click on menu item.');
@@ -34,8 +33,8 @@ const menuProps = {
   onClick: handleMenuClick,
 };
 
-export default function DashboardPage() {
-  const { form, handleAceptCotizacion, handleCancelAdd, handleCancelEdit, handleCancelSee, handleOkAdd, handleOkEdit, handleRechazarCotizacion, openModalAdd, openModalEdit, openModalSee, rowsSelect, selectedRecord, setOpenModalAdd, setRowsSelect, setShowSelect, showModalEdit, showModalSee, showSelect, tableData } = CotizacionHook();
+export const UserCotizacionCatalogo = () =>{
+  const { form, handleAceptCotizacion, handleCancelEdit, handleCancelSee, handleOkEdit, handleRechazarCotizacion, openModalEdit, openModalSee, rowsSelect, selectedRecord, setRowsSelect, setShowSelect, showModalEdit, showModalSee, showSelect, tableData } = CotizacionHook();
 
   const rowSelection: TableProps<DataType>['rowSelection'] = {
     onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
@@ -150,15 +149,7 @@ export default function DashboardPage() {
         <Table
           title={() =>
           (
-            <HeaderTable direction="flex-end">
-              <Button
-                icon={<PlusOutlined></PlusOutlined>}
-                onClick={() => {
-                  setOpenModalAdd(!openModalAdd)
-                }}
-              >
-                Agregar Cotización
-              </Button>
+            <HeaderTable direction="flex-end">            
               <Button
                 icon={<BlockOutlined></BlockOutlined>}
                 onClick={() => {
@@ -198,14 +189,6 @@ export default function DashboardPage() {
                 style={{ width: '100%' }}
               >
               </Input>
-              <FormModal
-                title='Registrar Cotización'
-                openModal={openModalAdd}
-                estadoForm={form}
-                handleOk={handleOkAdd}
-                handleClose={handleCancelAdd}
-              >
-              </FormModal>
             </HeaderTable>
           )}
           bordered

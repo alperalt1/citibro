@@ -9,6 +9,9 @@ import { PermisosRepository } from "./features/Permisos/Repositories/PermisosRep
 import { setPermissions, signOut } from "./features/Authentication/redux/slices/AuthSlice";
 import SignInPage from "./features/Authentication/Pages/SignInPage";
 import DashboardPage from "./features/Dashboard/Pages/DashboardPage";
+import { UserCotizacion } from "./features/Cotizacion/Pages/UserCotizacion";
+import { UserCotizacionCatalogo } from "./features/Cotizacion/Pages/UserCotizacionCatalogo";
+import { Cotizacion } from "./features/Cotizacion/Pages/Cotizacion";
 
 const { getMenuSideBar } = PermisosRepository();
 
@@ -56,6 +59,7 @@ function App() {
   const [routesReady, setRoutesReady] = useState(false);
 
   useEffect(() => {
+    console.log(menu)
     const fetch = async () => {
       if (authenticated && permissions === null) {
         const menu = await fetchAllowedPage(); // Consulta las rutas permitidas
@@ -66,7 +70,7 @@ function App() {
           const permisos = createPermissions(menu);
           dispatch(setPermissions(permisos))
           setMenu(menu);
-          setRoutesReady(true); // Indica que las rutas están listas
+          setRoutesReady(true);
         }
       } else if (!authenticated) {
         setRoutesReady(false); // Reinicia el estado de las rutas si el usuario no está autenticado
@@ -88,7 +92,20 @@ function App() {
     {
       path: '/dashboard',
       element: <DashboardPage />
-    }
+    },
+    {
+      path: '/usercotizacion',
+      element: <UserCotizacion />
+    },
+    {
+      path: '/catalog-user-cotizacion',
+      element: <UserCotizacionCatalogo />
+    },
+    {
+      path: '/cotizacion',
+      element: <Cotizacion />
+    },
+
   ]);
   return <RouterProvider router={router} />;
 }
