@@ -29,6 +29,27 @@
   align-items: center;
 }
 
+.ant-menu-sub {
+  background-color: #526ee6 !important; /* Azul más oscuro para diferenciar */
+}
+
+/* Estilos para ítems del submenú (normal) */
+.ant-menu-sub .ant-menu-item {
+  color: #d9e1ff !important; /* Texto azul claro suave */
+}
+
+/* Estilos para ítems del submenú (hover) */
+.ant-menu-sub .ant-menu-item:hover {
+  background-color: #526ee6 !important; /* Azul más claro para hover en submenús */
+  color: #ffffff !important; /* Texto blanco */
+}
+
+/* Estilos para ítems del submenú (seleccionado) */
+.ant-menu-sub .ant-menu-item-selected {
+  background-color: #2852da !important; /* Azul vibrante para selección */
+  color: #ffffff !important; /* Texto blanco */
+}
+
 /* SideBar */
 .ContenedorSidebar_Open,
 .ContenedorSidebar_Close {

@@ -1,12 +1,12 @@
 import { useState } from "react";
 
 import { Form, Modal } from "antd";
-import { DataType, dataUser } from "../../Dashboard/Pages/Data";
+import {  data, DataType } from "../../Dashboard/Pages/Data";
 
 
-export const CotizacionHook = () => {
+export const CotizacionAdminHook = () => {
   const [selectedRecord, setSelectedRecord] = useState<DataType | null>(null);
-  const [tableData, setTableData] = useState<DataType[]>(dataUser);
+  const [tableData, setTableData] = useState<DataType[]>(data);
   const [rowsSelect, setRowsSelect] = useState<DataType[]>();
   const [showSelect, setShowSelect] = useState<boolean>(false);
   const [openModalAdd, setOpenModalAdd] = useState<boolean>(false);

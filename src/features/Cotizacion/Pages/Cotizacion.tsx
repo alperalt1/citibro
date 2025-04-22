@@ -1,13 +1,16 @@
 import { RemoveRedEye } from "@mui/icons-material";
-import { Avatar, Button, DatePicker, Dropdown, Form, Input, InputNumber, Layout, MenuProps, message, Modal, Select, Space, Switch, Table, TableProps, Tooltip } from "antd";
+import { Avatar, Button, DatePicker, Dropdown, Form, Input, InputNumber, Layout, Menu, MenuProps, message, Modal, Select, Space, Switch, Table, TableProps, Tooltip } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
-import { LogoutOutlined, SearchOutlined, SettingOutlined, UserOutlined } from "@ant-design/icons";
+import { LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, SearchOutlined, SettingOutlined, UserOutlined } from "@ant-design/icons";
 import { HeaderTable } from "../../Cotizacion/components/HeaderTable";
 import { FormSeeModal } from "../../Cotizacion/components/FormSeeModal";
 import { CotizacionHook } from "../../Cotizacion/hooks/CotizacionHook";
-import { DataType } from "../../Dashboard/Pages/Data";
+import logo from '../../../assets/images/logos/Citibrokers_sinfondo.png';
 import { useState } from "react";
-
+import Sider from "antd/es/layout/Sider";
+import '../../../App.css';
+import { DataType, item } from "../../Dashboard/Pages/Data";
+import { useNavigate } from "react-router-dom";
 const handleMenuClick: MenuProps['onClick'] = (e) => {
   message.info('Click on menu item.');
   console.log('click', e);
@@ -34,7 +37,7 @@ const menuProps = {
 
 export const Cotizacion = () => {
   const { handleCancelSee, openModalSee, selectedRecord, setRowsSelect, showModalSee, showSelect, tableData } = CotizacionHook();
-
+  const navigate = useNavigate();
   const rowSelection: TableProps<DataType>['rowSelection'] = {
     onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
       console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
@@ -126,9 +129,8 @@ export const Cotizacion = () => {
     {
       title: 'Registrar Pago',
       key: 'action',
-      render: (_, record) => {
+      render: (_) => {
         return (
-
           <Space size={"large"}>
             <Switch
               checkedChildren="SI"
@@ -150,8 +152,9 @@ export const Cotizacion = () => {
           <Space size={"small"}>
             <Tooltip placement="bottom" title={"Ver"}>
               <Avatar
+                size={'small'}
                 shape="square"
-                icon={<RemoveRedEye />}
+                icon={<RemoveRedEye style={{ height: '80%' }} />}
                 onClick={() => showModalSee(record)}
               />
             </Tooltip>
@@ -162,99 +165,131 @@ export const Cotizacion = () => {
       },
     },
   ];
-
+  const [collapsed, setCollapsed] = useState(false);
   return (
-    <Layout style={{ height: '100%' }}>
-      <Header style={{ backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Space>
-          <label style={{ fontWeight: 'bold' }}>Cotizaciones</label>
+    <Layout style={{ height: '100%', backgroundColor: 'white' }}>
+      <Sider style={{ backgroundColor: '#2852da' }} trigger={null} collapsible collapsed={collapsed}>
+        <Space style={{ width: '100%', display: 'flex', justifyContent: 'center ', alignItems: 'center', flexDirection: 'column' }}>
+          {
+            collapsed ? <Space style={{ padding: 20 }}><Avatar>C</Avatar></Space> : <img style={{ width: "100%", padding: 20 }} src={logo}></img>
+          }
         </Space>
-        <Space>
-          <Dropdown menu={menuProps} placement="bottomRight" >
-            <Button type="text" >
-              <Space>
-                SofiaMartinez@apptelink.com
-                <SettingOutlined />
-              </Space>
-            </Button>
-          </Dropdown>
-        </Space>
-      </Header>
-      {selectedRecord && (
-        <>
-          <FormSeeModal info={selectedRecord} openModal={openModalSee} handleClose={handleCancelSee} />
-        </>
-      )}
-      {
-        pago && (
-          <>
-            <Modal
-              open={pago}
-              onCancel={() => {
-                setPago(false)
-                formulario.resetFields()
-              }}
-              okText={'Aceptar'}
-              cancelText={'Cancelar'}
-              onClose={() => {
-                setPago(false)
-                formulario.resetFields()
-              }}
-              title={"Registar Pago"}
-              width={'50%'}
-            >
-              <Form
-                form={formulario}
-                labelCol={{ span: 7 }}
-                wrapperCol={{ span: 15 }}
-                layout="horizontal"
-                style={{ width: '100%', paddingTop: 10 }}
-              >
-                <Form.Item label="Fecha de Pago" name="fechapago">
-                  <DatePicker style={{ width: '100%' }}></DatePicker>
-                </Form.Item>
-                <Form.Item label="Forma de Pago" name="formaPago">
-                  <Select>
-                    <Select.Option value="Financiamiento Directo">Financiamiento Directo</Select.Option>
-                    <Select.Option value="Debito a la Cuenta">Debito a la Cuenta</Select.Option>
-                    <Select.Option value="Tarjeta de Crédito">Tarjeta de Crédito</Select.Option>
-                  </Select>
-                </Form.Item>
-                {
-                  renderFormaPago(formaPago)
-                }
-                <Form.Item label="Porcentaje" name="porcentaje">
-                  <InputNumber addonAfter={"%"} style={{ width: '100%' }} />
-                </Form.Item>
-                <Form.Item label="valor" name="valor">
-                  <InputNumber addonAfter={"$"} style={{ width: '100%' }} controls={false}/>
-                </Form.Item>
-              </Form>
-            </Modal>
-          </>
-        )
-      }
-      <Content style={{ width: '100%' }}>
-        <Table
-          title={() =>
-          (
-            <HeaderTable direction="flex-end">
-              <Input
-                prefix={<SearchOutlined />}
-                style={{ width: '100%' }}
-              >
-              </Input>
-            </HeaderTable>
-          )}
-          bordered
-          rowSelection={showSelect ? { type: 'checkbox', ...rowSelection } : undefined}
-          dataSource={tableData}
-          columns={columns}
+        <Menu
+          style={{ backgroundColor: '#2852da' }}
+          mode="inline"
+          onClick={({ key }) => {
+            if (key === 'Signout') {
 
-          pagination={{ pageSize: 10 }}
-          scroll={{ y: 86 * 5 }}
+            } else {
+              navigate(key)
+            }
+          }}
+          items={item}
+
         />
-      </Content>
+      </Sider>
+      <Layout style={{ height: '100%', backgroundColor: 'white' }}>
+        <Header style={{ padding: 0, backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Space>
+            <Button
+              type="text"
+              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+              onClick={() => setCollapsed(!collapsed)}
+              style={{
+                fontSize: '16px',
+                width: 64,
+                height: 64,
+              }}
+            />
+            <label style={{ fontWeight: 'bold' }}>Cotizaciones</label>
+          </Space>
+          <Space>
+            <Dropdown menu={menuProps} placement="bottomRight" >
+              <Button type="text" >
+                <Space>
+                  sofiamartinez@apptelink.com
+                  <SettingOutlined />
+                </Space>
+              </Button>
+            </Dropdown>
+          </Space>
+        </Header>
+        {selectedRecord && (
+          <>
+            <FormSeeModal info={selectedRecord} openModal={openModalSee} handleClose={handleCancelSee} />
+          </>
+        )}
+        {
+          pago && (
+            <>
+              <Modal
+                open={pago}
+                onCancel={() => {
+                  setPago(false)
+                  formulario.resetFields()
+                }}
+                okText={'Aceptar'}
+                cancelText={'Cancelar'}
+                onClose={() => {
+                  setPago(false)
+                  formulario.resetFields()
+                }}
+                title={"Registar Pago"}
+                width={'50%'}
+              >
+                <Form
+                  form={formulario}
+                  labelCol={{ span: 7 }}
+                  wrapperCol={{ span: 15 }}
+                  layout="horizontal"
+                  style={{ width: '100%', paddingTop: 10 }}
+                >
+                  <Form.Item label="Fecha de Pago" name="fechapago">
+                    <DatePicker style={{ width: '100%' }}></DatePicker>
+                  </Form.Item>
+                  <Form.Item label="Forma de Pago" name="formaPago">
+                    <Select>
+                      <Select.Option value="Financiamiento Directo">Financiamiento Directo</Select.Option>
+                      <Select.Option value="Debito a la Cuenta">Debito a la Cuenta</Select.Option>
+                      <Select.Option value="Tarjeta de Crédito">Tarjeta de Crédito</Select.Option>
+                    </Select>
+                  </Form.Item>
+                  {
+                    renderFormaPago(formaPago)
+                  }
+                  <Form.Item label="Porcentaje" name="porcentaje">
+                    <InputNumber addonAfter={"%"} style={{ width: '100%' }} />
+                  </Form.Item>
+                  <Form.Item label="valor" name="valor">
+                    <InputNumber addonAfter={"$"} style={{ width: '100%' }} controls={false} />
+                  </Form.Item>
+                </Form>
+              </Modal>
+            </>
+          )
+        }
+        <Content style={{ width: '100%', height: '100%', paddingLeft: 20 }} className="content-container">
+          <Table
+            title={() =>
+            (
+              <HeaderTable direction="flex-end">
+
+                <Input
+                  prefix={<SearchOutlined />}
+                  style={{ width: '100%' }}
+                >
+                </Input>
+              </HeaderTable>
+            )}
+            bordered
+            rowSelection={showSelect ? { type: 'checkbox', ...rowSelection } : undefined}
+            dataSource={tableData}
+            columns={columns}
+            size="small"
+            pagination={{ pageSize: 10 }}
+          />
+        </Content>
+      </Layout>
     </Layout>
   );
 }

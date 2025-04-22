@@ -1,3 +1,6 @@
+import { CalendarOutlined, FileDoneOutlined, MailOutlined } from "@ant-design/icons";
+import { GetProp, MenuProps } from "antd";
+
 export interface DataType {
   key: string;
   name: string;
@@ -10,6 +13,8 @@ export interface DataType {
   deducibles?: number;
   formaPago?: 'Financiamento Directo' | "Debito a la Cuenta" | "Tarjeta de Crédito"
 }
+
+
 export const data: DataType[] = [
   {
     key: '1',
@@ -256,3 +261,49 @@ export const dataUser: DataType[] = [
   },
 ];
 
+type MenuItem = GetProp<MenuProps, 'items'>[number];
+export const item: MenuItem[] = [
+  {
+    key: 'sub2',
+    label: 'Cotización',
+    icon: <FileDoneOutlined />,
+    children: [
+      { key: '/usercotizacion', label: 'Generar Cotización' },
+      { key: '/catalog-user-cotizacion', label: 'Registro Cotizaciones' },
+      { key: '/cotizacion', label: 'Cotizaciones' },
+
+    ],
+  },
+  {
+    key: '1',
+    icon: <MailOutlined />,
+    label: 'Póliza',
+  },
+  {
+    key: '2',
+    icon: <CalendarOutlined />,
+    label: 'Siniestro',
+  },
+];
+
+export const itemAdmin: MenuItem[] = [
+  {
+    key: 'sub2',
+    label: 'Cotización',
+    icon: <FileDoneOutlined />,
+    children: [
+      { key: '/dashboard', label: 'Registro Cotizaciones' },
+
+    ],
+  },
+  {
+    key: '1',
+    icon: <MailOutlined />,
+    label: 'Póliza',
+  },
+  {
+    key: '2',
+    icon: <CalendarOutlined />,
+    label: 'Siniestro',
+  },
+];

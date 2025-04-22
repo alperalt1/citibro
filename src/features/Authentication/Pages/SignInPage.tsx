@@ -11,6 +11,7 @@ import '../../../App.css';
 
 const SignInPage = () => {
   const [form] = Form.useForm();
+  const formName = Form.useWatch('usuario', form);
   const navigate = useNavigate();
   const { iniciarSesion, isLoadingLogin } = AuthenticationService();
   const onFinish = (values: LoginInputModel) => {
@@ -54,7 +55,12 @@ const SignInPage = () => {
             </Form.Item>
             <Form.Item label={null}>
               <Button onClick={()=>{
-                navigate('/dashboard');
+                if(formName === "sofiamartinez@apptelink.com"){
+                  navigate('/usercotizacion');
+                }else {
+                  navigate('/dashboard');
+                }
+                
               }} type="primary" style={{ backgroundColor: "#16277f" }} htmlType="submit">
                 {
                   isLoadingLogin ? <Spin indicator={<LoadingOutlined spin />} size="small" /> : 'Iniciar Sesión'
