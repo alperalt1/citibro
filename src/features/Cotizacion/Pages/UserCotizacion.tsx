@@ -4,7 +4,7 @@ import TextArea from "antd/es/input/TextArea";
 import { Content, Header } from "antd/es/layout/layout"
 import Sider from "antd/es/layout/Sider";
 import { useState } from "react";
-import logo from '../../../assets/images/logos/Citibrokers_sinfondo.png';
+import logo from '../../../assets/images/logos/logonew.png';
 import { useNavigate } from "react-router-dom";
 import { item } from "../../Dashboard/Pages/Data";
 
@@ -99,14 +99,14 @@ export const UserCotizacion = () => {
   };
   return (
     <Layout style={{ height: '100%', backgroundColor: 'white' }}>
-      <Sider style={{ backgroundColor: '#2852da' }} trigger={null} collapsible collapsed={collapsed}>
+      <Sider style={{ backgroundColor: '#16277f' }} trigger={null} collapsible collapsed={collapsed}>
         <Space style={{ width: '100%', display: 'flex', justifyContent: 'center ', alignItems: 'center', flexDirection: 'column' }}>
           {
             collapsed ? <Space style={{ padding: 20 }}><Avatar>C</Avatar></Space> : <img style={{ width: "100%", padding: 20 }} src={logo}></img>
           }
         </Space>
         <Menu
-          style={{ backgroundColor: '#2852da' }}
+          style={{ backgroundColor: '#16277f' }}
           mode="inline"
           onClick={({ key }) => {
             if (key === 'Signout') {

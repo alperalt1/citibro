@@ -3,7 +3,7 @@ import { Avatar, Button, Dropdown, Input, Layout, Menu, MenuProps, message, Moda
 import { Content, Header } from "antd/es/layout/layout";
 import { BlockOutlined, DownloadOutlined, ExclamationCircleOutlined, LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, PlusOutlined, SearchOutlined, SettingOutlined, UserOutlined} from "@ant-design/icons";
 import { utils, writeFile } from 'xlsx';
-import logo from '../../../assets/images/logos/Citibrokers_sinfondo.png';
+import logo from '../../../assets/images/logos/logonew.png';
 import { HeaderTable } from "../../Cotizacion/components/HeaderTable";
 import { FormModal } from "../../Cotizacion/components/FormModal";
 import { FormEditModal } from "../../Cotizacion/components/FormEditModal";
@@ -136,7 +136,7 @@ export default function DashboardPage() {
 
   return (
     <Layout style={{ height: '100%' , backgroundColor: 'white'}}>
-      <Sider style={{ backgroundColor: '#2852da' }} trigger={null} collapsible collapsed={collapsed}>
+      <Sider style={{ backgroundColor: '#16277f' }} trigger={null} collapsible collapsed={collapsed}>
         <Space style={{width: '100%', display: 'flex', justifyContent: 'center ', alignItems:'center', flexDirection: 'column'}}>
         {
           collapsed ? <Space style={{padding:20}}><Avatar>C</Avatar></Space> :<img style={{ width: "100%", padding: 20}} src={logo}></img> 
@@ -150,7 +150,7 @@ export default function DashboardPage() {
               navigate(key)
             }
           }}
-          style={{ backgroundColor: '#2852da' }}
+          style={{ backgroundColor: '#16277f' }}
           mode="inline"
           items={itemAdmin}
         />

@@ -1,12 +1,13 @@
-import { LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, SettingOutlined, UserOutlined } from "@ant-design/icons"
-import { Avatar, Button, Col, DatePicker, Dropdown, Form, Input, InputNumber, Layout, Menu, MenuProps, message, Modal, Row, Select, Space } from "antd"
+import { DeleteFilled, LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, PlusOutlined, SettingOutlined, UserOutlined } from "@ant-design/icons"
+import { Avatar, Button, Card, Col, DatePicker, Dropdown, Form, Input, InputNumber, Layout, Menu, MenuProps, message, Modal, Row, Select, Space } from "antd"
 import TextArea from "antd/es/input/TextArea";
 import { Content, Header } from "antd/es/layout/layout"
 import Sider from "antd/es/layout/Sider";
 import { useState } from "react";
-import logo from '../../../assets/images/logos/Citibrokers_sinfondo.png';
+import logo from '../../../assets/images/logos/logonew.png';
 import { useNavigate } from "react-router-dom";
 import { item } from "../../Dashboard/Pages/Data";
+
 
 export const Poliza = () => {
   const [form] = Form.useForm();
@@ -99,14 +100,14 @@ export const Poliza = () => {
 
   return (
     <Layout style={{ height: '100%', backgroundColor: 'white' }}>
-      <Sider style={{ backgroundColor: '#2852da' }} trigger={null} collapsible collapsed={collapsed}>
+      <Sider style={{ backgroundColor: '#16277f' }} trigger={null} collapsible collapsed={collapsed}>
         <Space style={{ width: '100%', display: 'flex', justifyContent: 'center ', alignItems: 'center', flexDirection: 'column' }}>
           {
             collapsed ? <Space style={{ padding: 20 }}><Avatar>C</Avatar></Space> : <img style={{ width: "100%", padding: 20 }} src={logo}></img>
           }
         </Space>
         <Menu
-          style={{ backgroundColor: '#2852da' }}
+          style={{ backgroundColor: '#16277f' }}
           mode="inline"
           onClick={({ key }) => {
             if (key === 'Signout') {
@@ -153,10 +154,16 @@ export const Poliza = () => {
             style={{ width: '100%' }}
           >
             <Row>
-              <Col span={11} >
+              <Col span={11}>
                 <Form.Item label="Poliza" name="coberturaGeneral">
                   <label>XYT-00001</label>
                 </Form.Item>
+              </Col>
+            </Row>
+            <Row>
+
+              <Col span={11} >
+
                 <Form.Item label="Aseguradora" name="aseguradora">
                   <Select>
                     <Select.Option value="CHUBB SEGUROS ECUADOR S.A.">CHUBB SEGUROS ECUADOR S.A.</Select.Option>
@@ -199,27 +206,76 @@ export const Poliza = () => {
                 <Form.Item label="Fecha Registro" name="fecharegistro">
                   <DatePicker style={{ width: '100%' }}></DatePicker>
                 </Form.Item>
-                <Form.Item label="Prima Inicial" name="primainicial">
-                  <InputNumber addonAfter={"$"} style={{ width: '100%' }} />
-                </Form.Item>
-                <Form.Item label="Prima Final" name="primafinal">
-                  <InputNumber addonAfter={"$"} style={{ width: '100%' }} />
-                </Form.Item>
-
               </Col>
 
               <Col span={11}>
-                <Form.Item label="Detalle de la Poliza" name="detallepoliza">
+
+                <Form.Item label="Detalle de la Poliza" name="detallepoliza" >
                   <TextArea rows={3} style={{ resize: 'none' }} />
                 </Form.Item>
-                <Form.Item label="Suma Asegurada" name="sumaasegurada">
-                  <InputNumber addonAfter={"%"} style={{ width: '100%' }} />
+                <Form.Item label="Suma Asegurada" name="sumaasegurada" style={{ marginTop: '5.5%' }}>
+                  <InputNumber addonAfter={"$"} style={{ width: '100%' }} />
                 </Form.Item>
-                <Form.Item label="Valor Total" name="valortotal">
-                  <InputNumber addonAfter={"%"} style={{ width: '100%' }} />
-                </Form.Item>
-
               </Col>
+              <div style={{ width: '100%', display: 'flex', justifyContent: 'center', justifyItems: 'center', gap: 12, padding:40 }}>
+                <Card title="Anexo" style={{ width: '100%' }}>
+                  <Row gutter={16}>
+                    <Col span={12}>
+                      <Form.Item name="anexocantidad" >
+                        <Input style={{ width: '100%' }} />
+                      </Form.Item>
+                    </Col>
+                    <Col span={12}>
+                      <Form.Item name="anexovalor" >
+                        <InputNumber addonAfter="$" style={{ width: '100%' }} />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                  <div style={{width:'100%', display: 'flex', justifyContent: 'center', }}>
+                    
+                      <Button style={{width:'20%'}} icon={<PlusOutlined></PlusOutlined>}></Button>
+                    
+                  </div>
+                </Card>
+
+                <Card style={{ width: '100%' }}>
+                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'row', gap: 10, marginBottom: 8 }}>
+                    <Input placeholder="Objeto Asegurar" disabled={true}></Input>
+                    <Input placeholder="Prima Inicial" disabled={true}></Input>
+                    <Button>
+                      <DeleteFilled />
+                    </Button>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'row', gap: 10, marginBottom: 8 }}>
+                    <Input placeholder="Objeto Asegurar" disabled={true}></Input>
+                    <Input placeholder="Prima Inicial" disabled={true}></Input>
+                    <Button>
+                      <DeleteFilled />
+                    </Button>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'row', gap: 10, marginBottom: 8 }}>
+                    <Input placeholder="Objeto Asegurar" disabled={true}></Input>
+                    <Input placeholder="Prima Inicial" disabled={true}></Input>
+                    <Button>
+                      <DeleteFilled />
+                    </Button>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'row', gap: 10, marginBottom: 8 }}>
+                    <Input placeholder="Objeto Asegurar" disabled={true}></Input>
+                    <Input placeholder="Prima Inicial" disabled={true}></Input>
+                    <Button>
+                      <DeleteFilled />
+                    </Button>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'row', gap: 10, marginBottom: 8 }}>
+                    <Input placeholder="Objeto Asegurar" disabled={true}></Input>
+                    <Input placeholder="Prima Inicial" disabled={true}></Input>
+                    <Button>
+                      <DeleteFilled />
+                    </Button>
+                  </div>
+                </Card>
+              </div>
             </Row>
             <div style={{ padding: 25 }}></div>
             {/* <Row>
@@ -244,7 +300,7 @@ export const Poliza = () => {
                 title: 'Registro Exitoso',
                 content: 'Cotizacion Generada Exitosamente!',
               });
-            }}>Generar  Cotización</Button>
+            }}>Generar  Poliza</Button>
           </Space>
         </Content>
       </Layout>

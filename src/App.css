@@ -30,26 +30,57 @@
 }
 
 .ant-menu-sub {
-  background-color: #526ee6 !important; /* Azul más oscuro para diferenciar */
+  background-color: #16277f !important; /* Azul más oscuro para diferenciar */
 }
 
-/* Estilos para ítems del submenú (normal) */
+/* Ítems del submenú (normal) */
 .ant-menu-sub .ant-menu-item {
-  color: #d9e1ff !important; /* Texto azul claro suave */
+  color: #ffffff !important;
 }
 
-/* Estilos para ítems del submenú (hover) */
+/* Ítems del submenú (hover) */
 .ant-menu-sub .ant-menu-item:hover {
-  background-color: #526ee6 !important; /* Azul más claro para hover en submenús */
-  color: #ffffff !important; /* Texto blanco */
+  background-color: #16277f !important;
+  color: #ffffff !important;
 }
 
-/* Estilos para ítems del submenú (seleccionado) */
+/* Ítems del submenú (seleccionado) */
 .ant-menu-sub .ant-menu-item-selected {
-  background-color: #2852da !important; /* Azul vibrante para selección */
-  color: #ffffff !important; /* Texto blanco */
+  background-color: #16277f !important;
+  color: #ffffff !important;
 }
 
+/* Ítems del menú principal (normal) */
+.ant-menu > .ant-menu-item {
+  color: #ffffff !important;
+}
+
+/* Ítems del menú principal (hover) */
+.ant-menu > .ant-menu-item:hover {
+  background-color: #16277f !important;
+  color: #ffffff !important;
+}
+
+/* Ítems del menú principal (seleccionado) */
+.ant-menu > .ant-menu-item-selected {
+  background-color: #16277f !important;
+  color: #ffffff !important;
+}
+.ant-menu-submenu-title {
+  color: #ffffff !important;         /* Texto blanco */
+  background-color: #16277f !important; /* Fondo azul */
+}
+
+/* Hover sobre el título del dropdown */
+.ant-menu-submenu-title:hover {
+  background-color: #16277f !important; /* Fondo azul más claro */
+  color: #ffffff !important;           /* Texto blanco */
+}
+
+.ant-menu-submenu-selected > .ant-menu-submenu-title {
+  background-color: #16277f !important;
+  color: #ffffff !important;
+}
 /* SideBar */
 .ContenedorSidebar_Open,
 .ContenedorSidebar_Close {

@@ -10,7 +10,7 @@ import { CotizacionHook } from "../../Cotizacion/hooks/CotizacionHook";
 import Sider from "antd/es/layout/Sider";
 import { useState } from "react";
 import { DataType, item } from "../../Dashboard/Pages/Data";
-import logo from '../../../assets/images/logos/Citibrokers_sinfondo.png';
+import logo from '../../../assets/images/logos/logonew.png';
 import { useNavigate } from "react-router-dom";
 
 
@@ -19,18 +19,18 @@ export const UserCotizacionCatalogo = () => {
   const navigate = useNavigate();
   const handleMenuClick: MenuProps['onClick'] = (e) => {
     message.info('Click on menu item.');
-  
-    if(e.key === '2'){
+
+    if (e.key === '2') {
       navigate('/')
     }
   };
-  
+
   const items: MenuProps['items'] = [
     {
       label: 'Perfil',
       key: '1',
       icon: <UserOutlined />,
-  
+
     },
     {
       label: 'Salir',
@@ -38,7 +38,7 @@ export const UserCotizacionCatalogo = () => {
       icon: <LogoutOutlined />,
     },
   ];
-  
+
   const menuProps = {
     items,
     onClick: handleMenuClick,
@@ -134,7 +134,7 @@ export const UserCotizacionCatalogo = () => {
   const [collapsed, setCollapsed] = useState(false);
   return (
     <Layout style={{ height: '100%', backgroundColor: 'white' }}>
-      <Sider style={{ backgroundColor: '#2852da' }} trigger={null} collapsible collapsed={collapsed}>
+      <Sider style={{ backgroundColor: '#16277f' }} trigger={null} collapsible collapsed={collapsed}>
         <Space style={{ width: '100%', display: 'flex', justifyContent: 'center ', alignItems: 'center', flexDirection: 'column' }}>
           {
             collapsed ? <Space style={{ padding: 20 }}><Avatar>C</Avatar></Space> : <img style={{ width: "100%", padding: 20 }} src={logo}></img>
@@ -148,7 +148,7 @@ export const UserCotizacionCatalogo = () => {
               navigate(key)
             }
           }}
-          style={{ backgroundColor: '#2852da' }}
+          style={{ backgroundColor: '#16277f' }}
           mode="inline"
           items={item}
         />

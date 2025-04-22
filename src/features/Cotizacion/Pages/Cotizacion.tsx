@@ -5,7 +5,7 @@ import { LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, SearchOutlined, S
 import { HeaderTable } from "../../Cotizacion/components/HeaderTable";
 import { FormSeeModal } from "../../Cotizacion/components/FormSeeModal";
 import { CotizacionHook } from "../../Cotizacion/hooks/CotizacionHook";
-import logo from '../../../assets/images/logos/Citibrokers_sinfondo.png';
+import logo from '../../../assets/images/logos/logonew.png';
 import { useState } from "react";
 import Sider from "antd/es/layout/Sider";
 import '../../../App.css';
@@ -173,14 +173,14 @@ export const Cotizacion = () => {
   const [collapsed, setCollapsed] = useState(false);
   return (
     <Layout style={{ height: '100%', backgroundColor: 'white' }}>
-      <Sider style={{ backgroundColor: '#2852da' }} trigger={null} collapsible collapsed={collapsed}>
+      <Sider style={{ backgroundColor: '#16277f' }} trigger={null} collapsible collapsed={collapsed}>
         <Space style={{ width: '100%', display: 'flex', justifyContent: 'center ', alignItems: 'center', flexDirection: 'column' }}>
           {
             collapsed ? <Space style={{ padding: 20 }}><Avatar>C</Avatar></Space> : <img style={{ width: "100%", padding: 20 }} src={logo}></img>
           }
         </Space>
         <Menu
-          style={{ backgroundColor: '#2852da' }}
+          style={{ backgroundColor: '#16277f' }}
           mode="inline"
           onClick={({ key }) => {
             if (key === 'Signout') {
