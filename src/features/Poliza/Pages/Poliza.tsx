@@ -1,5 +1,5 @@
 import { LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, SettingOutlined, UserOutlined } from "@ant-design/icons"
-import { Avatar, Button, Col, Dropdown, Form, Input, InputNumber, Layout, Menu, MenuProps, message, Modal, Row, Select, Space } from "antd"
+import { Avatar, Button, Col, DatePicker, Dropdown, Form, Input, InputNumber, Layout, Menu, MenuProps, message, Modal, Row, Select, Space } from "antd"
 import TextArea from "antd/es/input/TextArea";
 import { Content, Header } from "antd/es/layout/layout"
 import Sider from "antd/es/layout/Sider";
@@ -8,8 +8,7 @@ import logo from '../../../assets/images/logos/Citibrokers_sinfondo.png';
 import { useNavigate } from "react-router-dom";
 import { item } from "../../Dashboard/Pages/Data";
 
-
-export const UserCotizacion = () => {
+export const Poliza = () => {
   const [form] = Form.useForm();
   const formaPago = Form.useWatch('formaPago', form);
   const renderFormaPago = (formPago: string) => {
@@ -73,18 +72,18 @@ export const UserCotizacion = () => {
   const navigate = useNavigate();
   const handleMenuClick: MenuProps['onClick'] = (e) => {
     message.info('Click on menu item.');
-  
-    if(e.key === '2'){
+
+    if (e.key === '2') {
       navigate('/')
     }
   };
-  
+
   const items: MenuProps['items'] = [
     {
       label: 'Perfil',
       key: '1',
       icon: <UserOutlined />,
-  
+
     },
     {
       label: 'Salir',
@@ -92,11 +91,12 @@ export const UserCotizacion = () => {
       icon: <LogoutOutlined />,
     },
   ];
-  
+
   const menuProps = {
     items,
     onClick: handleMenuClick,
   };
+
   return (
     <Layout style={{ height: '100%', backgroundColor: 'white' }}>
       <Sider style={{ backgroundColor: '#2852da' }} trigger={null} collapsible collapsed={collapsed}>
@@ -132,7 +132,7 @@ export const UserCotizacion = () => {
                 height: 64,
               }}
             />
-            <label style={{ fontWeight: 'bold' }}>Registrar Cotización</label>
+            <label style={{ fontWeight: 'bold' }}>Generar Poliza</label>
           </Space>
           <Space>
             <Dropdown menu={menuProps} placement="bottomRight" >
@@ -154,20 +154,8 @@ export const UserCotizacion = () => {
           >
             <Row>
               <Col span={11} >
-                {/* <Form.Item label="Cliente" name="name" >
-                <Select>
-                  <Select.Option value="Alex Peralta">Alex Peralta</Select.Option>
-                  <Select.Option value="Kevin Pilko">Kevin Pilko</Select.Option>
-                  <Select.Option value="Apptelink S.A.">Apptelink S.A.</Select.Option>
-                  <Select.Option value="Amazon">Amazon</Select.Option>
-                  <Select.Option value="Marcos Vidal">Marcos Vidal</Select.Option>
-                </Select>
-              </Form.Item> */}
-                <Form.Item label="Tipo de Cliente" name="tipocliente">
-                  <Select>
-                    <Select.Option value="Natural">Natural</Select.Option>
-                    <Select.Option value="Juridíco">Juridíco</Select.Option>
-                  </Select>
+                <Form.Item label="Poliza" name="coberturaGeneral">
+                  <label>XYT-00001</label>
                 </Form.Item>
                 <Form.Item label="Aseguradora" name="aseguradora">
                   <Select>
@@ -208,26 +196,33 @@ export const UserCotizacion = () => {
                     <Select.Option value="INCENDIO Y LINEAS ALIADAS">INCENDIO Y LINEAS ALIADAS</Select.Option>
                   </Select>
                 </Form.Item>
-                <Form.Item label="Observacíones" name="observaciones">
-                  <TextArea rows={3} style={{ resize: 'none' }} />
+                <Form.Item label="Fecha Registro" name="fecharegistro">
+                  <DatePicker style={{ width: '100%' }}></DatePicker>
                 </Form.Item>
+                <Form.Item label="Prima Inicial" name="primainicial">
+                  <InputNumber addonAfter={"$"} style={{ width: '100%' }} />
+                </Form.Item>
+                <Form.Item label="Prima Final" name="primafinal">
+                  <InputNumber addonAfter={"$"} style={{ width: '100%' }} />
+                </Form.Item>
+
               </Col>
 
               <Col span={11}>
-                <Form.Item label="Cobertura General" name="coberturaGeneral">
-                  <Input />
+                <Form.Item label="Detalle de la Poliza" name="detallepoliza">
+                  <TextArea rows={3} style={{ resize: 'none' }} />
                 </Form.Item>
-                <Form.Item label="Cobertura Adicional" name="coberturaAdicional">
-                  <Input />
+                <Form.Item label="Suma Asegurada" name="sumaasegurada">
+                  <InputNumber addonAfter={"%"} style={{ width: '100%' }} />
                 </Form.Item>
-                <Form.Item label="Deducibles" name="deducibles">
+                <Form.Item label="Valor Total" name="valortotal">
                   <InputNumber addonAfter={"%"} style={{ width: '100%' }} />
                 </Form.Item>
 
               </Col>
             </Row>
             <div style={{ padding: 25 }}></div>
-            <Row>
+            {/* <Row>
               <Col span={11}>
                 <Form.Item label="Forma de Pago" name="formaPago">
                   <Select>
@@ -240,7 +235,7 @@ export const UserCotizacion = () => {
                   renderFormaPago(formaPago)
                 }
               </Col>
-            </Row>
+            </Row> */}
           </Form>
           <Space style={{ display: 'flex', flexDirection: 'row', justifyContent: 'end', alignItems: 'center', width: '100%', paddingRight: '8%', paddingBottom: '4%' }}>
             <Button onClick={() => form.resetFields()}>Limpiar</Button>

@@ -12,6 +12,7 @@ import DashboardPage from "./features/Dashboard/Pages/DashboardPage";
 import { UserCotizacion } from "./features/Cotizacion/Pages/UserCotizacion";
 import { UserCotizacionCatalogo } from "./features/Cotizacion/Pages/UserCotizacionCatalogo";
 import { Cotizacion } from "./features/Cotizacion/Pages/Cotizacion";
+import { Poliza } from "./features/Poliza/Pages/Poliza";
 
 const { getMenuSideBar } = PermisosRepository();
 
@@ -104,6 +105,10 @@ function App() {
     {
       path: '/cotizacion',
       element: <Cotizacion />
+    },
+    {
+      path: '/poliza',
+      element: <Poliza />
     },
 
   ]);

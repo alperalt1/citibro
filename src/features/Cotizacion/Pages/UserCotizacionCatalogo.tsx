@@ -13,34 +13,36 @@ import { DataType, item } from "../../Dashboard/Pages/Data";
 import logo from '../../../assets/images/logos/Citibrokers_sinfondo.png';
 import { useNavigate } from "react-router-dom";
 
-const handleMenuClick: MenuProps['onClick'] = (e) => {
-  message.info('Click on menu item.');
-  console.log('click', e);
-};
-
-const items: MenuProps['items'] = [
-  {
-    label: 'Perfil',
-    key: '1',
-    icon: <UserOutlined />,
-
-  },
-  {
-    label: 'Salir',
-    key: '2',
-    icon: <LogoutOutlined />,
-  },
-];
-
-
-const menuProps = {
-  items,
-  onClick: handleMenuClick,
-};
 
 export const UserCotizacionCatalogo = () => {
   const { form, handleAceptCotizacion, handleCancelEdit, handleCancelSee, handleOkEdit, handleRechazarCotizacion, openModalEdit, openModalSee, rowsSelect, selectedRecord, setRowsSelect, setShowSelect, showModalEdit, showModalSee, showSelect, tableData } = CotizacionHook();
   const navigate = useNavigate();
+  const handleMenuClick: MenuProps['onClick'] = (e) => {
+    message.info('Click on menu item.');
+  
+    if(e.key === '2'){
+      navigate('/')
+    }
+  };
+  
+  const items: MenuProps['items'] = [
+    {
+      label: 'Perfil',
+      key: '1',
+      icon: <UserOutlined />,
+  
+    },
+    {
+      label: 'Salir',
+      key: '2',
+      icon: <LogoutOutlined />,
+    },
+  ];
+  
+  const menuProps = {
+    items,
+    onClick: handleMenuClick,
+  };
   const rowSelection: TableProps<DataType>['rowSelection'] = {
     onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
       console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);

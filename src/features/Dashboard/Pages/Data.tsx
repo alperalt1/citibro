@@ -278,6 +278,10 @@ export const item: MenuItem[] = [
     key: '1',
     icon: <MailOutlined />,
     label: 'Póliza',
+    children: [
+      { key: '/poliza', label: 'Generar Poliza' },
+
+    ],
   },
   {
     key: '2',
